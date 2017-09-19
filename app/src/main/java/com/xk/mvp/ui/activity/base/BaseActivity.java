@@ -1,9 +1,8 @@
-package com.xk.mvp.ui.base;
+package com.xk.mvp.ui.activity.base;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -16,7 +15,7 @@ import com.github.nukc.stateview.StateView;
 import com.xk.mvp.application.AppApplication;
 import com.xk.mvp.listener.PermissionListener;
 import com.xk.mvp.presenter.BasePresenter;
-import com.xk.mvp.ui.MainActivity;
+import com.xk.mvp.ui.activity.MainActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -222,9 +221,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         }
     }
 
-    public static Activity getmCurrentActivity(){
-        return mCurrentActivity;
-    }
 
 }
 
