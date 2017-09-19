@@ -1,6 +1,7 @@
 package com.xk.mvp.ui.activity.base;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -52,13 +53,18 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
         this.saveInstanceState = savedInstanceState;
 
+        if (getContentViewLayoutID() != 0) {
+            setContentView(getContentViewLayoutID());
+        } else {
+            throw new IllegalArgumentException("You must return a right contentView layout resource Id");
+        }
+
         synchronized (mActivitys){
             mActivitys.add(this);
         }
 
         mPresenter = createPresenter();
 
-        setContentView(getContentViewLayoutID());
         ButterKnife.bind(this);
         initView();
         initData();
@@ -219,6 +225,18 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             break;
 
         }
+    }
+
+
+    /**
+     * startActivity then finish
+     *
+     * @param clazz
+     */
+    protected void readyGoThenKill(Class<?> clazz) {
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
+        finish();
     }
 
 
