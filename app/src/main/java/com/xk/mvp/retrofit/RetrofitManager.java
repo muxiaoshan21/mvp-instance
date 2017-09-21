@@ -24,6 +24,9 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by xk on 2017/9/19.
+ *
+ * TODO  疑点： cookie持久化 这一点尚未验证  xk 2017-9-21 18:34:52
+ *
  */
 
 public class RetrofitManager {
