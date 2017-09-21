@@ -9,6 +9,8 @@ import android.os.Bundle;
 
 import com.xk.mvp.R;
 import com.xk.mvp.presenter.BasePresenter;
+import com.xk.mvp.statusbar.Eyes;
+import com.xk.mvp.statusbar.StatusBarUtil;
 import com.xk.mvp.ui.activity.base.BaseActivity;
 import com.xk.mvp.ui.fragment.HomeFragment;
 import com.xk.mvp.ui.fragment.OtherFragment;
@@ -48,6 +50,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
+
+//        StatusBarUtil.transparencyBar(this);  //  状态栏透明
+//        StatusBarUtil.StatusBarLightMode(this); // 状态栏 字体 黑色
+
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager());
         mViewPger.setAdapter(mainAdapter);
         mViewPger.setOffscreenPageLimit(4);
@@ -85,13 +91,25 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onPageSelected(int position) {
-
+            setStatusBarColor(position);
         }
 
         @Override
         public void onPageScrollStateChanged(int state) {
 
         }
+    }
+
+    private void setStatusBarColor(int position) {
+
+        if(position == 3){
+            //如果是我的页面，状态栏设置为透明状态栏
+            Eyes.translucentStatusBar(MainActivity.this,true);
+            StatusBarUtil.StatusBarLightMode(this); // 状态栏 字体 黑色
+        }else{
+            Eyes.setStatusBarColor(MainActivity.this, R.color.color_48A5FF);
+        }
+
     }
 
 }

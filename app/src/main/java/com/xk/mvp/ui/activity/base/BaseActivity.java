@@ -1,6 +1,7 @@
 package com.xk.mvp.ui.activity.base;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     private static Activity mCurrentActivity;  //  管理activity
     public static List<Activity> mActivitys = new LinkedList();
     private static long exitTime;
+    protected Context mContext;
 
 
     @Override
@@ -52,7 +54,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         }
 
         this.saveInstanceState = savedInstanceState;
-
+        mContext = this;
         if (getContentViewLayoutID() != 0) {
             setContentView(getContentViewLayoutID());
         } else {

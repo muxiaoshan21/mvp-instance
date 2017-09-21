@@ -1,8 +1,11 @@
 package com.xk.mvp.retrofit;
 
+import android.util.Log;
+
 import com.google.gson.GsonBuilder;
 import com.socks.library.KLog;
 import com.xk.mvp.application.AppApplication;
+import com.xk.mvp.application.BaseApplication;
 import com.xk.mvp.constants.ApiURL;
 
 import java.io.File;
@@ -32,8 +35,9 @@ public class RetrofitManager {
 
 
     public RetrofitManager() {
+
         //cache url
-        File httpCacheDirectory = new File(AppApplication.getContext().getCacheDir(), "responses");
+        File httpCacheDirectory = new File(BaseApplication.getContext().getCacheDir(), "responses");
         int cacheSize = 10 * 1024 * 1024; // 10 MB
         Cache cache = new Cache(httpCacheDirectory, cacheSize);
 
